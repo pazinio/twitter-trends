@@ -16,8 +16,7 @@ const T = new Twit({
 //
 const trendSummary = (trend, date) =>
   T.get('search/tweets', { q: `${trend} since:${date}`, count: 100 })
-  .then(data => dbg(data))
-  .then(data => ({ total: data.length }))
+  .then(res => dbg(res.data.statuses.length))
   .catch(e => dbg(e))
 
 const comparison = (date, trend1, trend2) => 
@@ -25,7 +24,8 @@ const comparison = (date, trend1, trend2) =>
   	trendSummary(trend1, date),
   	trendSummary(trend2, date)
   	])
-  .then(rs => rs.reduce((data, res, i) => data[`trend-${i}`] = res, {}))
+  .then(rs => rs.reduce((data, res, i) => Object.assign({}, data, { [`trend${i+1}`] : res }), {}))
+  .then(d => dbg(d))
   .catch(e => dbg(e))
 
 
