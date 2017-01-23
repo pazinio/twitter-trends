@@ -2,9 +2,9 @@
   "name": "proj1",
   "version": "1.0.0",
   "description": "read tweets and calcs trends ratio",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+   "start": "node app.js"
   },
   "author": "Pazinio",
   "license": "ISC",
